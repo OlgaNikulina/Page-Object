@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "4.1.6"
 }
 
 group 'ru.netology'
@@ -12,5 +13,8 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
+    testImplementation 'com.github.javafaker:javafaker:1.0.1'
+    testImplementation 'com.codeborne:selenide:5.11.1'
+    testRuntimeOnly 'org.slf4j:slf4j-simple:1.7.30'
 }
