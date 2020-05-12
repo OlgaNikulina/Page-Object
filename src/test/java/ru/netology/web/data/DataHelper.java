@@ -27,4 +27,23 @@ public class DataHelper {
   public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
     return new VerificationCode("12345");
   }
+
+  @Value
+  public static class CartInfo{
+    private String cartNumber;
+    private String balance;
+    private String amount;
+  }
+
+  public static CartInfo transferMoney(){
+return new CartInfo("5559 0000 0000 0001", "10 000 RUB", "100" );
+  }
+
+  public static CartInfo getBalance1(){
+    return new CartInfo("5559 0000 0000 0001", "10 000 RUB", "100");
+  }
+
+  public static CartInfo getBalance2(){
+    return new CartInfo("5559 0000 0000 0002", "10 000 RUB", "100");
+  }
 }

@@ -13,18 +13,20 @@ class MoneyTransferTest {
     void shouldTransferMoneyBetweenOwnCardsV1() {
       open("http://localhost:9999");
       val loginPage = new LoginPageV2();
-//    val loginPage = open("http://localhost:9999", LoginPageV1.class);
       val authInfo = DataHelper.getAuthInfo();
       val verificationPage = loginPage.validLogin(authInfo);
       val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
       verificationPage.validVerify(verificationCode);
+      DataHelper.CartInfo dataHelper = DataHelper.transferMoney();
+      val transferMoneyBetweenCarts = loginPage.transferMoneyBetweenCart(dataHelper);
+
+
     }
 
   @Test
   void shouldTransferMoneyBetweenOwnCardsV2() {
     open("http://localhost:9999");
     val loginPage = new LoginPageV2();
-//    val loginPage = open("http://localhost:9999", LoginPageV2.class);
     val authInfo = DataHelper.getAuthInfo();
     val verificationPage = loginPage.validLogin(authInfo);
     val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -40,4 +42,3 @@ class MoneyTransferTest {
     verificationPage.validVerify(verificationCode);
   }
 }
-
