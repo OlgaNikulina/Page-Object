@@ -10,17 +10,15 @@ import static com.codeborne.selenide.Selenide.open;
 
 class MoneyTransferTest {
     @Test
-    void shouldTransferMoneyBetweenOwnCardsV1() {
+    void shouldTransfer100From01Cart() {
       open("http://localhost:9999");
       val loginPage = new LoginPageV2();
       val authInfo = DataHelper.getAuthInfo();
       val verificationPage = loginPage.validLogin(authInfo);
       val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
       verificationPage.validVerify(verificationCode);
-      DataHelper.CartInfo dataHelper = DataHelper.transferMoney();
+      DataHelper.CartInfo dataHelper = DataHelper.transfer100From01Cart();
       val transferMoneyBetweenCarts = loginPage.transferMoneyBetweenCart(dataHelper);
-
-
     }
 
   @Test

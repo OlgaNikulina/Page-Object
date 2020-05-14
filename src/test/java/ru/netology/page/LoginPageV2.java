@@ -33,8 +33,8 @@ public class LoginPageV2 {
   public DataHelper transferMoneyBetweenCart(DataHelper.CartInfo dataHelper) {
     buttonReplenish.click();
     transferPage.shouldBe(visible);
-    amountField.setValue(dataHelper.getAmount());
-    fromField.setValue(dataHelper.getCartNumber());
+    amountField.setValue(String.valueOf(dataHelper.getAmount()));
+    fromField.setValue(dataHelper.getCartNumber1());
     replenishFinalButton.click();
     cartsInfoPage.shouldBe(visible);
     return (DataHelper) cartsInfoPage;
