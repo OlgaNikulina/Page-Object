@@ -1,19 +1,14 @@
 package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 import ru.netology.web.data.DataHelper;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-
-public class LoginPageV2 {
-    private SelenideElement loginField = $("[data-test-id=login] input");
-    private SelenideElement passwordField = $("[data-test-id=password] input");
-    private SelenideElement loginButton = $("[data-test-id=action-login]");
-    private SelenideElement buttonContinue = $("span.button__text");
+public class TransferMoney {
     private SelenideElement balance01CartBefore = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']");
     private SelenideElement balance02CartBefore = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']");
     private SelenideElement buttonReplenish1 = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0'] .button__text");
@@ -21,34 +16,23 @@ public class LoginPageV2 {
     private SelenideElement transferPage = $("div.App_appContainer__3jRx1");
     private SelenideElement amountField = $("[data-test-id='amount'] input");
     private SelenideElement fromField = $("[data-test-id='from'] input");
-    private SelenideElement replenishFinalButton = $$("button").find(exactText("пополнить"));
-    private SelenideElement balance01CartAfter = $("[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']");
-    private SelenideElement balance02CartAfter = $("[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']");
-    private SelenideElement cartsInfoPage = $("App_appContainer__3jRx1");
+    private SelenideElement replenishFinalButton = $("#root > div > form > button.button.button_view_extra.button_size_s.button_theme_alfa-on-white > span > span");
+    private SelenideElement notificationError = $("[data-test-id='error-notification'] .notification__title");
 
 
-    public VerificationPage validLogin(DataHelper.AuthInfo info) {
-        loginField.setValue(info.getLogin());
-        passwordField.setValue(info.getPassword());
-        loginButton.click();
-        buttonContinue.click();
-        return new VerificationPage();
-    }
-
-    public DataHelper transferMoneyFrom01Cart(DataHelper.CartInfo dataHelper) {
+    public void transferMoneyFrom01Cart(DataHelper.CartInfo dataHelper) {
         balance01CartBefore.shouldBe(visible);
         balance02CartBefore.shouldBe(visible);
         buttonReplenish2.click();
         transferPage.shouldBe(visible);
         amountField.setValue(String.valueOf(dataHelper.getAmount()));
         fromField.setValue(dataHelper.getCartNumber1());
+        fromField.sendKeys(Keys.TAB);
         replenishFinalButton.click();
-        balance01CartAfter.shouldBe(visible);
-        balance02CartAfter.shouldBe(visible);
-        return (DataHelper) cartsInfoPage;
+        notificationError.shouldBe(visible);
     }
 
-    public DataHelper transferMoneyFrom02Cart(DataHelper.CartInfo dataHelper) {
+    public void transferMoneyFrom02Cart(DataHelper.CartInfo dataHelper) {
         balance01CartBefore.shouldBe(visible);
         balance02CartBefore.shouldBe(visible);
         buttonReplenish1.click();
@@ -56,7 +40,15 @@ public class LoginPageV2 {
         amountField.setValue(String.valueOf(dataHelper.getAmount()));
         fromField.setValue(dataHelper.getCartNumber2());
         replenishFinalButton.click();
-        cartsInfoPage.shouldBe(visible);
-        return (DataHelper) cartsInfoPage;
+    }
+
+    public void shouldNotTransferMoneyWithEmptyFields() {
+        balance01CartBefore.shouldBe(visible);
+        balance02CartBefore.shouldBe(visible);
+        buttonReplenish2.click();
+        transferPage.shouldBe(visible);
+        amountField.setValue("");
+        fromField.setValue("");
+        replenishFinalButton.click();
     }
 }

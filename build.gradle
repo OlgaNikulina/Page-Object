@@ -18,3 +18,8 @@ dependencies {
     testImplementation 'com.codeborne:selenide:5.11.1'
     testRuntimeOnly 'org.slf4j:slf4j-simple:1.7.30'
 }
+
+test {
+    useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+}
