@@ -1,11 +1,11 @@
-package ru.netology.web.test;
+package ru.netology.test;
 
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import ru.netology.page.CartInfoPage;
 import ru.netology.page.LoginPage;
 import ru.netology.page.TransferMoney;
-import ru.netology.web.data.DataHelper;
+import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.open;
 
