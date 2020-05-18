@@ -14,9 +14,9 @@ public class VerificationPage {
         codeField.shouldBe(visible);
     }
 
-    public CartInfoPage validVerify(DataHelper.VerificationCode verificationCode) {
+    public CardInfoPage validVerify(DataHelper.VerificationCode verificationCode) {
         codeField.setValue(verificationCode.getCode());
         verifyButton.click();
-        return new CartInfoPage();
+        return new CardInfoPage();
     }
 }
