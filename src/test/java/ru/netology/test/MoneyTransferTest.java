@@ -14,118 +14,134 @@ class MoneyTransferTest {
 
     @Test
     void shouldTransfer100From01Cart() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
+        int amount = 100;
+        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
-        CardInfoPage cardInfoPage = new CardInfoPage();
-        cardInfoPage.cardInfoPageIfReplenishSecondCard();
-        TransferMoney transferMoney = new TransferMoney();
-        final int balanceFirstCardBeforeTransaction = transferMoney.getBalanceFirstCardBeforeTransaction();
-        final int balanceSecondCardBeforeTransaction = transferMoney.getBalanceSecondCardBeforeTransaction();
-        DataHelper.CartInfo dataHelper = DataHelper.transfer100From01Cart();
-        transferMoney.transferMoneyFrom01Cart(dataHelper);
+        val cardInfoPage = verificationPage.validVerify(verificationCode);
+        int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+        int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+        val transferMoney = cardInfoPage.cardInfoPageIfReplenishSecondCard();
+        DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
+        transferMoney.transferMoneyFromFirstCart(cardsInfo, amount);
         cardInfoPage.cardInfoPageShouldVerify();
-        final int balanceFirstCardAfterTransaction = cardInfoPage.getBalanceFirstCardAfterTransaction() - 100;
-        final int balanceSecondCardAfterTransaction = cardInfoPage.getBalanceSecondCardAfterTransaction() + 100;
-        Assertions.assertEquals(balanceFirstCardBeforeTransaction, balanceFirstCardAfterTransaction);
-        Assertions.assertEquals(balanceSecondCardBeforeTransaction, balanceSecondCardAfterTransaction);
+        int balanceFirstCardAfterTransaction = balanceFirstCardBeforeTransaction - amount;
+        int balanceSecondCardAfterTransaction = balanceSecondCardBeforeTransaction + amount;
+        Assertions.assertEquals(balanceFirstCardAfterTransaction, cardInfoPage.getBalanceFirstCard());
+        Assertions.assertEquals(balanceSecondCardAfterTransaction, cardInfoPage.getBalanceSecondCard());
     }
 
     @Test
     void shouldTransfer100From02Cart() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
+        int amount = 100;
+        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
-        CardInfoPage cardInfoPage = new CardInfoPage();
-        cardInfoPage.cardInfoPageIfReplenishFirstCard();
-        DataHelper.CartInfo dataHelper = DataHelper.transfer100From02Cart();
-        TransferMoney transferMoney = new TransferMoney();
-        final int balanceFirstCardBeforeTransaction = transferMoney.getBalanceFirstCardBeforeTransaction();
-        final int balanceSecondCardBeforeTransaction = transferMoney.getBalanceSecondCardBeforeTransaction();
-        transferMoney.transferMoneyFrom02Cart(dataHelper);
+        val cardInfoPage = verificationPage.validVerify(verificationCode);
+        int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+        int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+        val transferMoney = cardInfoPage.cardInfoPageIfReplenishFirstCard();
+        DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
+        transferMoney.transferMoneyFromSecondCart(cardsInfo, amount);
         cardInfoPage.cardInfoPageShouldVerify();
-        final int balanceFirstCardAfterTransaction = cardInfoPage.getBalanceFirstCardAfterTransaction();
-        final int balanceSecondCardAfterTransaction = cardInfoPage.getBalanceSecondCardAfterTransaction();
+        int balanceFirstCardAfterTransaction = balanceFirstCardBeforeTransaction - amount;
+        int balanceSecondCardAfterTransaction = balanceSecondCardBeforeTransaction + amount;
+        Assertions.assertEquals(balanceFirstCardAfterTransaction, cardInfoPage.getBalanceFirstCard());
+        Assertions.assertEquals(balanceSecondCardAfterTransaction, cardInfoPage.getBalanceSecondCard());
     }
 
     @Test
     void shouldTransfer10000From01Cart() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
+        int amount = 1000;
+        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
-        CardInfoPage cardInfoPage = new CardInfoPage();
-        cardInfoPage.cardInfoPageIfReplenishSecondCard();
-        DataHelper.CartInfo dataHelper = DataHelper.transfer10000From01Cart();
-        TransferMoney transferMoney = new TransferMoney();
-        transferMoney.transferMoneyFrom01Cart(dataHelper);
+        val cardInfoPage = verificationPage.validVerify(verificationCode);
+        int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+        int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+        val transferMoney = cardInfoPage.cardInfoPageIfReplenishSecondCard();
+        DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
+        transferMoney.transferMoneyFromFirstCart(cardsInfo, amount);
         cardInfoPage.cardInfoPageShouldVerify();
+        int balanceFirstCardAfterTransaction = balanceFirstCardBeforeTransaction - amount;
+        int balanceSecondCardAfterTransaction = balanceSecondCardBeforeTransaction + amount;
+        Assertions.assertEquals(balanceFirstCardAfterTransaction, cardInfoPage.getBalanceFirstCard());
+        Assertions.assertEquals(balanceSecondCardAfterTransaction, cardInfoPage.getBalanceSecondCard());
     }
 
     @Test
     void shouldTransfer10000From02Cart() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
+        int amount = 1000;
+        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
-        CardInfoPage cardInfoPage = new CardInfoPage();
-        cardInfoPage.cardInfoPageIfReplenishFirstCard();
-        DataHelper.CartInfo dataHelper = DataHelper.transfer10000From02Cart();
-        TransferMoney transferMoney = new TransferMoney();
-        transferMoney.transferMoneyFrom02Cart(dataHelper);
+        val cardInfoPage = verificationPage.validVerify(verificationCode);
+        int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+        int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+        val transferMoney = cardInfoPage.cardInfoPageIfReplenishFirstCard();
+        DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
+        transferMoney.transferMoneyFromSecondCart(cardsInfo, amount);
         cardInfoPage.cardInfoPageShouldVerify();
+        int balanceFirstCardAfterTransaction = balanceFirstCardBeforeTransaction - amount;
+        int balanceSecondCardAfterTransaction = balanceSecondCardBeforeTransaction + amount;
+        Assertions.assertEquals(balanceFirstCardAfterTransaction, cardInfoPage.getBalanceFirstCard());
+        Assertions.assertEquals(balanceSecondCardAfterTransaction, cardInfoPage.getBalanceSecondCard());
     }
 
     @Test
     void shouldTransfer0From01Cart() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
+        int amount = 0;
+        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
-        CardInfoPage cardInfoPage = new CardInfoPage();
-        cardInfoPage.cardInfoPageIfReplenishSecondCard();
-        DataHelper.CartInfo dataHelper = DataHelper.transfer0From01Cart();
-        TransferMoney transferMoney = new TransferMoney();
-        transferMoney.transferMoneyFrom01Cart(dataHelper);
+        val cardInfoPage = verificationPage.validVerify(verificationCode);
+        int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+        int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+        val transferMoney = cardInfoPage.cardInfoPageIfReplenishSecondCard();
+        DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
+        transferMoney.transferMoneyFromFirstCart(cardsInfo, amount);
         cardInfoPage.cardInfoPageShouldVerify();
+        int balanceFirstCardAfterTransaction = balanceFirstCardBeforeTransaction - amount;
+        int balanceSecondCardAfterTransaction = balanceSecondCardBeforeTransaction + amount;
+        Assertions.assertEquals(balanceFirstCardAfterTransaction, cardInfoPage.getBalanceFirstCard());
+        Assertions.assertEquals(balanceSecondCardAfterTransaction, cardInfoPage.getBalanceSecondCard());
     }
-
     @Test
     void shouldTransfer0From02Cart() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
-        val authInfo = DataHelper.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
-        CardInfoPage cardInfoPage = new CardInfoPage();
-        cardInfoPage.cardInfoPageIfReplenishFirstCard();
-        DataHelper.CartInfo dataHelper = DataHelper.transfer0From02Cart();
-        TransferMoney transferMoney = new TransferMoney();
-        transferMoney.transferMoneyFrom02Cart(dataHelper);
-        cardInfoPage.cardInfoPageShouldVerify();
-    }
+            int amount = 0;
+            val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+            val authInfo = DataHelper.getAuthInfo();
+            val verificationPage = loginPage.validLogin(authInfo);
+            val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+            val cardInfoPage = verificationPage.validVerify(verificationCode);
+            int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+            int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+            val transferMoney = cardInfoPage.cardInfoPageIfReplenishFirstCard();
+            DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
+            transferMoney.transferMoneyFromSecondCart(cardsInfo, amount);
+            cardInfoPage.cardInfoPageShouldVerify();
+            int balanceFirstCardAfterTransaction = balanceFirstCardBeforeTransaction - amount;
+            int balanceSecondCardAfterTransaction = balanceSecondCardBeforeTransaction + amount;
+            Assertions.assertEquals(balanceFirstCardAfterTransaction, cardInfoPage.getBalanceFirstCard());
+            Assertions.assertEquals(balanceSecondCardAfterTransaction, cardInfoPage.getBalanceSecondCard());
+        }
 
     @Test
     void shouldNotTransferMoneyWithEmptyFields() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
+        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        verificationPage.validVerify(verificationCode);
+        val cardInfoPage = verificationPage.validVerify(verificationCode);
+        int balanceFirstCardBeforeTransaction = cardInfoPage.getBalanceFirstCard();
+        int balanceSecondCardBeforeTransaction = cardInfoPage.getBalanceSecondCard();
+        val transferMoney = cardInfoPage.cardInfoPageIfReplenishFirstCard();
+        DataHelper.CartInfo cardsInfo = DataHelper.getCardsInfo();
         TransferMoney transferMoney = new TransferMoney();
         transferMoney.shouldNotTransferMoneyWithEmptyFields();
     }

@@ -26,18 +26,18 @@ public class TransferMoney {
         return  Integer.parseInt(cardInfoString.substring(29, cardInfoString.indexOf(" ", 29)));
     }
 
-    public void transferMoneyFrom01Cart(DataHelper.CartInfo dataHelper) {
+    public void transferMoneyFromFirstCart(DataHelper.CartInfo cardsInfo, int amountToTransfer) {
         transferPage.shouldBe(visible);
-        amountField.setValue(String.valueOf(dataHelper.getAmount()));
-        fromField.setValue(dataHelper.getCartNumber1());
+        amountField.setValue(String.valueOf(amountToTransfer));
+        fromField.setValue(cardsInfo.getCardNumber1());
         fromField.sendKeys(Keys.TAB);
         replenishFinalButton.click();
     }
 
-    public void transferMoneyFrom02Cart(DataHelper.CartInfo dataHelper) {
+    public void transferMoneyFromSecondCart(DataHelper.CartInfo cardsInfo, int amountToTransfer) {
         transferPage.shouldBe(visible);
-        amountField.setValue(String.valueOf(dataHelper.getAmount()));
-        fromField.setValue(dataHelper.getCartNumber2());
+        amountField.setValue(String.valueOf(amountToTransfer));
+        fromField.setValue(cardsInfo.getCardNumber2());
         fromField.sendKeys(Keys.TAB);
         replenishFinalButton.click();
     }
