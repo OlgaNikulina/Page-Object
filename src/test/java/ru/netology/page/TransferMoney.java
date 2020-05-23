@@ -17,7 +17,7 @@ public class TransferMoney {
     public void transferMoneyFromFirstCart(DataHelper.CartInfo cardsInfo, int amountToTransfer) {
         transferPage.shouldBe(visible);
         amountField.setValue(String.valueOf(amountToTransfer));
-        fromField.setValue(cardsInfo.getCardNumber1());
+        fromField.setValue(cardsInfo.getCartNumber1());
         fromField.sendKeys(Keys.TAB);
         replenishFinalButton.click();
     }
@@ -25,7 +25,7 @@ public class TransferMoney {
     public void transferMoneyFromSecondCart(DataHelper.CartInfo cardsInfo, int amountToTransfer) {
         transferPage.shouldBe(visible);
         amountField.setValue(String.valueOf(amountToTransfer));
-        fromField.setValue(cardsInfo.getCardNumber2());
+        fromField.setValue(cardsInfo.getCartNumber2());
         fromField.sendKeys(Keys.TAB);
         replenishFinalButton.click();
     }
