@@ -3,10 +3,9 @@ package ru.netology.test;
 import lombok.val;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.netology.page.CardInfoPage;
+import ru.netology.data.DataHelper;
 import ru.netology.page.LoginPage;
 import ru.netology.page.TransferMoney;
-import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -15,7 +14,7 @@ class MoneyTransferTest {
     @Test
     void shouldTransfer100From01Cart() {
         int amount = 100;
-        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+        val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -35,7 +34,7 @@ class MoneyTransferTest {
     @Test
     void shouldTransfer100From02Cart() {
         int amount = 100;
-        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+        val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -55,7 +54,7 @@ class MoneyTransferTest {
     @Test
     void shouldTransfer10000From01Cart() {
         int amount = 1000;
-        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+        val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -75,7 +74,7 @@ class MoneyTransferTest {
     @Test
     void shouldTransfer10000From02Cart() {
         int amount = 1000;
-        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+        val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);

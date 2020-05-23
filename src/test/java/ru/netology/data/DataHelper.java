@@ -1,17 +1,11 @@
 package ru.netology.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Value;
 
 public class DataHelper {
     private DataHelper() {
     }
 
-   @Data
-   @AllArgsConstructor
-   @NoArgsConstructor
    @Value
     public static class AuthInfo {
        private String login;
@@ -39,17 +33,6 @@ public class DataHelper {
     public static class CartInfo {
         private String cartNumber1;
         private String cartNumber2;
-
-        public CartInfo(String s, String s1) {
-        }
-
-        public String getCardNumber1() {
-            return null;
-        }
-
-        public String getCardNumber2() {
-            return null;
-        }
     }
 
     public static CartInfo getCardsInfo() {
