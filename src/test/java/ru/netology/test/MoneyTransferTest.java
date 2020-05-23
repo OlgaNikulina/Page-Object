@@ -95,7 +95,7 @@ class MoneyTransferTest {
     @Test
     void shouldTransfer0From01Cart() {
         int amount = 0;
-        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+        val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -114,7 +114,7 @@ class MoneyTransferTest {
     @Test
     void shouldTransfer0From02Cart() {
             int amount = 0;
-            val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+            val loginPage = open("http://localhost:9999", LoginPage.class);
             val authInfo = DataHelper.getAuthInfo();
             val verificationPage = loginPage.validLogin(authInfo);
             val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -133,7 +133,7 @@ class MoneyTransferTest {
 
     @Test
     void shouldNotTransferMoneyWithEmptyFields() {
-        val loginPage = (val) open("http://localhost:9999", LoginPage.class);
+        val loginPage = open("http://localhost:9999", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);

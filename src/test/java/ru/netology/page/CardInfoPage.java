@@ -45,7 +45,6 @@ public class CardInfoPage {
         return Integer.parseInt(cardInfoString.substring(29,cardInfoString.indexOf(" ",29)));
     }
 
-
     public int getBalanceFirstCardBeforeTransaction(){
         String cardInfoString = firstCardInfo.getText();
         return Integer.parseInt(cardInfoString.substring(29,cardInfoString.indexOf(" ",29)));
@@ -55,7 +54,6 @@ public class CardInfoPage {
         String cardInfoString = secondCardInfo.getText();
         return  Integer.parseInt(cardInfoString.substring(29, cardInfoString.indexOf(" ", 29)));
     }
-
 
     public int getBalanceFirstCardAfterTransaction(){
         String cardInfoString = firstCardInfo.getText();

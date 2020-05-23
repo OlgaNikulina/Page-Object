@@ -1,27 +1,24 @@
 package ru.netology.data;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
-import lombok.val;
 
 public class DataHelper {
     private DataHelper() {
     }
 
+   @Data
+   @AllArgsConstructor
+   @NoArgsConstructor
    @Value
     public static class AuthInfo {
-        private String login;
-        private String password;
-
-       public String getLogin() {
-           return null;
-       }
-
-       public String getPassword() {
-           return null;
-       }
+       private String login;
+       private String password;
    }
 
-    public static val getAuthInfo() {
+    public static AuthInfo getAuthInfo(AuthInfo original) {
         return new AuthInfo("vasya", "qwerty123");
     }
 
