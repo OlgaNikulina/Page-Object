@@ -14,7 +14,7 @@ public class TransferMoney {
     private SelenideElement replenishFinalButton = $("[data-test-id='action-transfer']");
     private SelenideElement notificationError = $("[data-test-id='error-notification'] .notification__title");
 
-    public void transferMoneyFromFirstCart(DataHelper.CartInfo cardsInfo, int amountToTransfer) {
+    public void transferMoneyFromFirstCart(DataHelper.CardInfo cardsInfo, int amountToTransfer) {
         transferPage.shouldBe(visible);
         amountField.setValue(String.valueOf(amountToTransfer));
         fromField.setValue(cardsInfo.getCartNumber1());
@@ -22,7 +22,7 @@ public class TransferMoney {
         replenishFinalButton.click();
     }
 
-    public void transferMoneyFromSecondCart(DataHelper.CartInfo cardsInfo, int amountToTransfer) {
+    public void transferMoneyFromSecondCart(DataHelper.CardInfo cardsInfo, int amountToTransfer) {
         transferPage.shouldBe(visible);
         amountField.setValue(String.valueOf(amountToTransfer));
         fromField.setValue(cardsInfo.getCartNumber2());

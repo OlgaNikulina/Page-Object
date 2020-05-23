@@ -1,67 +1,38 @@
 package ru.netology.data;
 
+import lombok.Value;
+
 public class DataHelper {
     private DataHelper() {
     }
 
+    @Value
     public static class AuthInfo {
         private String login;
         private String password;
-
-        public String getLogin() {
-            return login;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public AuthInfo(String login, String password) {
-            this.login = login;
-            this.password = password;
-        }
     }
 
     public static AuthInfo getAuthInfo() {
         return new AuthInfo("vasya", "qwerty123");
     }
 
+    @Value
     public static class VerificationCode {
         private String code;
-
-        public String getCode() {
-            return code;
-        }
-
-        public VerificationCode(String code) {
-            this.code = code;
-        }
     }
 
     public static VerificationCode getVerificationCodeFor() {
         return new VerificationCode("12345");
     }
 
-    public static class CartInfo {
+    @Value
+    public static class CardInfo {
         private String cartNumber1;
         private String cartNumber2;
-
-        public String getCartNumber1() {
-            return cartNumber1;
-        }
-
-
-        public String getCartNumber2() {
-            return cartNumber2;
-        }
-
-        public CartInfo(String cartNumber1, String cartNumber2) {
-            this.cartNumber1 = cartNumber1;
-            this.cartNumber2 = cartNumber2;
-        }
     }
 
-    public static CartInfo getCardsInfo() {
-        return new CartInfo("5559 0000 0000 0001", "5559 0000 0000 0002");
+    public static CardInfo getCardsInfo() {
+        return new CardInfo("5559 0000 0000 0001", "5559 0000 0000 0002");
     }
 }
+
